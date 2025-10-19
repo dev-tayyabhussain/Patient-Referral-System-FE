@@ -53,21 +53,32 @@ const createValidationSchema = (selectedRole: string) => {
         });
     }
 
-    if (selectedRole === 'hospital_admin') {
-        return yup.object({
-            ...baseSchema,
-            hospitalId: yup.string().required('Hospital selection is required'),
-            department: yup.string().required('Department is required'),
-            position: yup.string().required('Position is required'),
-        });
-    }
+  if (selectedRole === 'hospital_admin') {
+    return yup.object({
+      ...baseSchema,
+      department: yup.string().required('Department is required'),
+      position: yup.string().required('Position is required'),
+    });
+  }
 
-    if (selectedRole === 'patient') {
-        return yup.object({
-            ...baseSchema,
-            gender: yup.string().required('Gender is required'),
-        });
-    }
+  if (selectedRole === 'patient') {
+    return yup.object({
+      ...baseSchema,
+      gender: yup.string().required('Gender is required'),
+      emergencyContact: yup.string().required('Emergency contact name is required'),
+      emergencyPhone: yup.string().required('Emergency contact phone is required'),
+      medicalHistory: yup.string().optional(),
+    });
+  }
+
+  if (selectedRole === 'super_admin') {
+    return yup.object({
+      ...baseSchema,
+      adminLevel: yup.string().required('Admin level is required'),
+      organization: yup.string().required('Organization is required'),
+      responsibilities: yup.string().required('Responsibilities are required'),
+    });
+  }
 
     return yup.object(baseSchema);
 };
@@ -78,21 +89,21 @@ const StepperRegisterPage: React.FC = () => {
     const [selectedRole, setSelectedRole] = useState('');
     const [showPassword, setShowPassword] = useState(false);
     const [showConfirmPassword, setShowConfirmPassword] = useState(false);
-  const [loading, setLoading] = useState(false);
+    const [loading, setLoading] = useState(false);
 
-  const validationSchema = useMemo(() => createValidationSchema(selectedRole), [selectedRole]);
-  const {
-    control,
-    handleSubmit,
-    formState: { errors },
-    trigger,
-    getValues,
-    setValue,
-    reset,
-  } = useForm({
-    resolver: yupResolver(validationSchema),
-    mode: 'onChange',
-  });
+    const validationSchema = useMemo(() => createValidationSchema(selectedRole), [selectedRole]);
+    const {
+        control,
+        handleSubmit,
+        formState: { errors },
+        trigger,
+        getValues,
+        setValue,
+        reset,
+    } = useForm({
+        resolver: yupResolver(validationSchema),
+        mode: 'onChange',
+    });
 
     const handleNext = async () => {
         const fieldsToValidate = getFieldsForStep(activeStep);
@@ -117,14 +128,20 @@ const StepperRegisterPage: React.FC = () => {
                     personalFields.push('gender');
                 }
                 return personalFields;
-            case 2:
-                if (selectedRole === 'doctor') {
-                    return ['hospitalId', 'specialization', 'licenseNumber', 'experience', 'qualification'];
-                }
-                if (selectedRole === 'hospital_admin') {
-                    return ['hospitalId', 'department', 'position'];
-                }
-                return [];
+      case 2:
+        if (selectedRole === 'doctor') {
+          return ['hospitalId', 'specialization', 'licenseNumber', 'experience', 'qualification'];
+        }
+        if (selectedRole === 'hospital_admin') {
+          return ['department', 'position'];
+        }
+        if (selectedRole === 'patient') {
+          return ['emergencyContact', 'emergencyPhone', 'medicalHistory'];
+        }
+        if (selectedRole === 'super_admin') {
+          return ['adminLevel', 'organization', 'responsibilities'];
+        }
+        return [];
             case 3:
                 return ['password', 'confirmPassword'];
             default:
@@ -196,15 +213,14 @@ const StepperRegisterPage: React.FC = () => {
         }
     };
 
-    const isStepOptional = (step: number) => {
-        return step === 2 && (selectedRole === 'patient' || selectedRole === 'super_admin');
-    };
+  const isStepOptional = (step: number) => {
+    return false; // No steps are optional now
+  };
 
-    const canProceed = () => {
-        if (activeStep === 0) return selectedRole !== '';
-        if (activeStep === 2 && (selectedRole === 'patient' || selectedRole === 'super_admin')) return true;
-        return true;
-    };
+  const canProceed = () => {
+    if (activeStep === 0) return selectedRole !== '';
+    return true;
+  };
 
     return (
         <Box
