@@ -13,6 +13,7 @@ import AboutPage from '../pages/AboutPage';
 import ContactPage from '../pages/ContactPage';
 import LoginPage from '../pages/auth/LoginPage';
 import RegisterPage from '../pages/auth/RegisterPage';
+import StepperRegisterPage from '../pages/auth/StepperRegisterPage';
 import DashboardPage from '../pages/dashboard/DashboardPage';
 import HospitalsPage from '../pages/hospitals/HospitalsPage';
 import PatientsPage from '../pages/patients/PatientsPage';
@@ -74,7 +75,7 @@ const AppRoutes: React.FC = () => {
                 <Route path="about" element={<AboutPage />} />
                 <Route path="contact" element={<ContactPage />} />
                 <Route path="login" element={<LoginPage />} />
-                <Route path="register" element={<RegisterPage />} />
+                <Route path="register" element={<StepperRegisterPage />} />
             </Route>
 
             {/* Protected Routes */}
