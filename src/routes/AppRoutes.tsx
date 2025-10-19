@@ -35,10 +35,11 @@ import BookAppointmentPage from '../pages/patient/BookAppointmentPage';
 
 // Components
 import LoadingSpinner from '../components/common/LoadingSpinner';
+import ApprovalStatus from '../components/auth/ApprovalStatus';
 
 // Protected Route Component
 const ProtectedRoute: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-    const { isAuthenticated, isLoading } = useAuth();
+    const { isAuthenticated, isLoading, user, needsApproval } = useAuth();
 
     if (isLoading) {
         return <LoadingSpinner message="Authenticating..." fullScreen />;
@@ -46,6 +47,11 @@ const ProtectedRoute: React.FC<{ children: React.ReactNode }> = ({ children }) =
 
     if (!isAuthenticated) {
         return <Navigate to="/login" replace />;
+    }
+
+    // Check if user needs approval
+    if (needsApproval()) {
+        return <ApprovalStatus user={user!} />;
     }
 
     return <>{children}</>;

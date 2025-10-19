@@ -78,4 +78,5 @@ export interface AuthContextType {
   isAuthenticated: boolean;
   isLoading: boolean;
   error: string | null;
+  needsApproval: () => boolean;
 }
