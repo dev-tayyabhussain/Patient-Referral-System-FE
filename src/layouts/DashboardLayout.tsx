@@ -148,7 +148,7 @@ const DashboardLayout: React.FC = () => {
                 open={Boolean(anchorEl)}
                 onClose={handleProfileMenuClose}
             >
-                <MenuItem onClick={handleProfileMenuClose}>
+                <MenuItem onClick={() => { handleProfileMenuClose(); navigate('/dashboard/profile'); }}>
                     <ListItemIcon>
                         <AccountCircle fontSize="small" />
                     </ListItemIcon>

@@ -86,6 +86,17 @@ export const authAPI = {
   
   getCurrentUser: () =>
     apiClient.get('/api/auth/me'),
+
+  updateProfile: (data: any) =>
+    apiClient.put('/api/auth/profile', data),
+
+  uploadProfileImage: (file: File) => {
+    const formData = new FormData();
+    formData.append('image', file);
+    return api.post('/api/auth/profile/image', formData, {
+      headers: { 'Content-Type': 'multipart/form-data' },
+    });
+  },
   
   forgotPassword: (email: string) =>
     apiClient.post('/api/auth/forgot-password', { email }),

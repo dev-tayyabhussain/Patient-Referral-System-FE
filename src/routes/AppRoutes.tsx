@@ -15,6 +15,7 @@ import LoginPage from '../pages/auth/LoginPage';
 import RegisterPage from '../pages/auth/RegisterPage';
 import StepperRegisterPage from '../pages/auth/StepperRegisterPage';
 import DashboardPage from '../pages/dashboard/DashboardPage';
+import EditProfilePage from '../pages/profile/EditProfilePage';
 import HospitalsPage from '../pages/hospitals/HospitalsPage';
 import PatientsPage from '../pages/patients/PatientsPage';
 import ReferralsPage from '../pages/referrals/ReferralsPage';
@@ -166,6 +167,9 @@ const AppRoutes: React.FC = () => {
 
                 {/* Referral Management - All authenticated users */}
                 <Route path="referrals" element={<ReferralsPage />} />
+
+                {/* Profile - All authenticated users */}
+                <Route path="profile" element={<EditProfilePage />} />
             </Route>
 
             {/* Catch all route */}
