@@ -5,6 +5,7 @@ A comprehensive healthcare management platform frontend built with React, TypeSc
 ## 🚀 Features
 
 ### Core Features
+
 - **Role-Based Authentication**: Secure login system for different user types
 - **Approval Workflow**: Complete approval system for hospitals and doctors
 - **Responsive Design**: Mobile-first design that works on all devices
@@ -12,12 +13,14 @@ A comprehensive healthcare management platform frontend built with React, TypeSc
 - **Type Safety**: Full TypeScript implementation
 
 ### User Roles
+
 - **Super Admin**: System administration and hospital approval
 - **Hospital Admin**: Hospital management and doctor approval
 - **Doctor**: Patient care and appointment management
 - **Patient**: Appointment booking and health record access
 
 ### Approval Workflow
+
 - **Hospital Registration**: Requires Super Admin approval
 - **Doctor Registration**: Requires Hospital Admin approval
 - **Status Tracking**: Real-time approval status updates
@@ -38,21 +41,26 @@ A comprehensive healthcare management platform frontend built with React, TypeSc
 ## 📦 Installation
 
 1. **Clone the repository**
+
    ```bash
    git clone https://github.com/DaniyalAlam09/medinet-frontend.git
    cd medinet-frontend
    ```
 
 2. **Install dependencies**
+
    ```bash
    npm install
    ```
 
 3. **Environment Setup**
+
    ```bash
    cp .env.example .env.local
    ```
+
    Update the environment variables in `.env.local`:
+
    ```
    VITE_API_URL=http://localhost:5000/api
    VITE_APP_NAME=MediNet
@@ -66,11 +74,13 @@ A comprehensive healthcare management platform frontend built with React, TypeSc
 ## 🚀 Deployment
 
 ### Vercel (Recommended)
+
 1. Connect your GitHub repository to Vercel
 2. Set environment variables in Vercel dashboard
 3. Deploy automatically on push to main branch
 
 ### Manual Build
+
 ```bash
 npm run build
 npm run preview
@@ -104,18 +114,21 @@ src/
 ## 🔐 Authentication & Authorization
 
 ### Login Flow
+
 1. User enters credentials
 2. System validates with backend
 3. JWT token stored securely
 4. User redirected to appropriate dashboard
 
 ### Approval Flow
+
 1. **Hospital Admin**: Registers → Pending approval → Super Admin approves → Access granted
 2. **Doctor**: Registers → Pending approval → Hospital Admin approves → Access granted
 3. **Patient**: Registers → Immediate access
 4. **Super Admin**: Registers → Immediate access
 
 ### Protected Routes
+
 - All dashboard routes require authentication
 - Role-based access control for specific features
 - Approval status checked before access
@@ -123,12 +136,14 @@ src/
 ## 🎨 UI/UX Features
 
 ### Design System
+
 - **Primary Color**: #1988C8 (Blue)
 - **Secondary Color**: #339164 (Green)
 - **Typography**: Custom font sizing and weights
 - **Components**: Consistent Material-UI theming
 
 ### Responsive Design
+
 - Mobile-first approach
 - Breakpoints: xs, sm, md, lg, xl
 - Adaptive navigation and layouts
@@ -158,11 +173,13 @@ npm run test:coverage
 ## 🔧 Configuration
 
 ### Environment Variables
+
 - `VITE_API_URL` - Backend API URL
 - `VITE_APP_NAME` - Application name
 - `VITE_APP_VERSION` - Application version
 
 ### Build Configuration
+
 - Vite configuration in `vite.config.ts`
 - TypeScript configuration in `tsconfig.json`
 - ESLint configuration in `.eslintrc.js`
@@ -170,6 +187,7 @@ npm run test:coverage
 ## 🚀 Performance
 
 ### Optimization Features
+
 - Code splitting with dynamic imports
 - Lazy loading of routes
 - Optimized bundle size
@@ -177,6 +195,7 @@ npm run test:coverage
 - Image optimization
 
 ### Bundle Analysis
+
 ```bash
 npm run build -- --analyze
 ```
