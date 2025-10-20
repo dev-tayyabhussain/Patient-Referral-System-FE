@@ -4,49 +4,49 @@ import { PendingUser, PendingHospital, ApprovalStats, Hospital } from '../types/
 export const approvalApi = {
   // Get pending users (Super Admin)
   getPendingUsers: async (params?: { role?: string; page?: number; limit?: number }) => {
-    const response = await api.get('/approval/pending-users', { params });
+    const response = await api.get('/api/approval/pending-users', { params });
     return response.data;
   },
 
   // Get pending hospitals (Super Admin)
   getPendingHospitals: async (params?: { page?: number; limit?: number }) => {
-    const response = await api.get('/approval/pending-hospitals', { params });
+    const response = await api.get('/api/approval/pending-hospitals', { params });
     return response.data;
   },
 
   // Get pending doctors for hospital (Hospital Admin)
   getPendingDoctors: async (params?: { page?: number; limit?: number }) => {
-    const response = await api.get('/approval/pending-doctors', { params });
+    const response = await api.get('/api/approval/pending-doctors', { params });
     return response.data;
   },
 
   // Approve user
   approveUser: async (userId: string, message?: string) => {
-    const response = await api.post(`/approval/approve-user/${userId}`, { message });
+    const response = await api.post(`/api/approval/approve-user/${userId}`, { message });
     return response.data;
   },
 
   // Reject user
   rejectUser: async (userId: string, reason: string) => {
-    const response = await api.post(`/approval/reject-user/${userId}`, { reason });
+    const response = await api.post(`/api/approval/reject-user/${userId}`, { reason });
     return response.data;
   },
 
   // Approve hospital
   approveHospital: async (hospitalId: string, message?: string) => {
-    const response = await api.post(`/approval/approve-hospital/${hospitalId}`, { message });
+    const response = await api.post(`/api/approval/approve-hospital/${hospitalId}`, { message });
     return response.data;
   },
 
   // Reject hospital
   rejectHospital: async (hospitalId: string, reason: string) => {
-    const response = await api.post(`/approval/reject-hospital/${hospitalId}`, { reason });
+    const response = await api.post(`/api/approval/reject-hospital/${hospitalId}`, { reason });
     return response.data;
   },
 
   // Get approval statistics
   getApprovalStats: async (): Promise<{ success: boolean; data: ApprovalStats }> => {
-    const response = await api.get('/approval/stats');
+    const response = await api.get('/api/approval/stats');
     return response.data;
   },
 };

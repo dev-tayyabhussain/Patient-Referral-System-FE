@@ -106,6 +106,25 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
 
     const isAuthenticated = !!user;
 
+    // Check if user needs approval
+    const needsApproval = () => {
+        if (!user) return false;
+
+        if (user.role === 'super_admin' || user.role === 'patient') {
+            return false;
+        }
+
+        if (user.role === 'hospital_admin' && user.approvalStatus !== 'approved') {
+            return true; // Always needs hospital approval
+        }
+
+        if (user.role === 'doctor') {
+            return user.approvalStatus !== 'approved';
+        }
+
+        return false;
+    };
+
     const value: AuthContextType = {
         user,
         login,
@@ -114,6 +133,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
         isAuthenticated,
         isLoading,
         error,
+        needsApproval,
     };
 
     return (

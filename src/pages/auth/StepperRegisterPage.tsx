@@ -53,32 +53,32 @@ const createValidationSchema = (selectedRole: string) => {
         });
     }
 
-  if (selectedRole === 'hospital_admin') {
-    return yup.object({
-      ...baseSchema,
-      department: yup.string().required('Department is required'),
-      position: yup.string().required('Position is required'),
-    });
-  }
+    if (selectedRole === 'hospital_admin') {
+        return yup.object({
+            ...baseSchema,
+            department: yup.string().required('Department is required'),
+            position: yup.string().required('Position is required'),
+        });
+    }
 
-  if (selectedRole === 'patient') {
-    return yup.object({
-      ...baseSchema,
-      gender: yup.string().required('Gender is required'),
-      emergencyContact: yup.string().required('Emergency contact name is required'),
-      emergencyPhone: yup.string().required('Emergency contact phone is required'),
-      medicalHistory: yup.string().optional(),
-    });
-  }
+    if (selectedRole === 'patient') {
+        return yup.object({
+            ...baseSchema,
+            gender: yup.string().required('Gender is required'),
+            emergencyContact: yup.string().required('Emergency contact name is required'),
+            emergencyPhone: yup.string().required('Emergency contact phone is required'),
+            medicalHistory: yup.string().optional(),
+        });
+    }
 
-  if (selectedRole === 'super_admin') {
-    return yup.object({
-      ...baseSchema,
-      adminLevel: yup.string().required('Admin level is required'),
-      organization: yup.string().required('Organization is required'),
-      responsibilities: yup.string().required('Responsibilities are required'),
-    });
-  }
+    if (selectedRole === 'super_admin') {
+        return yup.object({
+            ...baseSchema,
+            adminLevel: yup.string().required('Admin level is required'),
+            organization: yup.string().required('Organization is required'),
+            responsibilities: yup.string().required('Responsibilities are required'),
+        });
+    }
 
     return yup.object(baseSchema);
 };
@@ -128,20 +128,20 @@ const StepperRegisterPage: React.FC = () => {
                     personalFields.push('gender');
                 }
                 return personalFields;
-      case 2:
-        if (selectedRole === 'doctor') {
-          return ['hospitalId', 'specialization', 'licenseNumber', 'experience', 'qualification'];
-        }
-        if (selectedRole === 'hospital_admin') {
-          return ['department', 'position'];
-        }
-        if (selectedRole === 'patient') {
-          return ['emergencyContact', 'emergencyPhone', 'medicalHistory'];
-        }
-        if (selectedRole === 'super_admin') {
-          return ['adminLevel', 'organization', 'responsibilities'];
-        }
-        return [];
+            case 2:
+                if (selectedRole === 'doctor') {
+                    return ['hospitalId', 'specialization', 'licenseNumber', 'experience', 'qualification'];
+                }
+                if (selectedRole === 'hospital_admin') {
+                    return ['department', 'position'];
+                }
+                if (selectedRole === 'patient') {
+                    return ['emergencyContact', 'emergencyPhone', 'medicalHistory'];
+                }
+                if (selectedRole === 'super_admin') {
+                    return ['adminLevel', 'organization', 'responsibilities'];
+                }
+                return [];
             case 3:
                 return ['password', 'confirmPassword'];
             default:
@@ -213,14 +213,14 @@ const StepperRegisterPage: React.FC = () => {
         }
     };
 
-  const isStepOptional = (step: number) => {
-    return false; // No steps are optional now
-  };
+    const isStepOptional = (step: number) => {
+        return false; // No steps are optional now
+    };
 
-  const canProceed = () => {
-    if (activeStep === 0) return selectedRole !== '';
-    return true;
-  };
+    const canProceed = () => {
+        if (activeStep === 0) return selectedRole !== '';
+        return true;
+    };
 
     return (
         <Box

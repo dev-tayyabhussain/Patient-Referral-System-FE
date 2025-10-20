@@ -29,11 +29,11 @@ const ProfessionalInfoStep: React.FC<ProfessionalInfoStepProps> = ({
     const [hospitals, setHospitals] = useState<Hospital[]>([]);
     const [loadingHospitals, setLoadingHospitals] = useState(false);
 
-  useEffect(() => {
-    if (selectedRole === 'doctor') {
-      loadHospitals();
-    }
-  }, [selectedRole]);
+    useEffect(() => {
+        if (selectedRole === 'doctor') {
+            loadHospitals();
+        }
+    }, [selectedRole]);
 
     const loadHospitals = async () => {
         try {
@@ -47,7 +47,7 @@ const ProfessionalInfoStep: React.FC<ProfessionalInfoStepProps> = ({
         }
     };
 
-  // All roles now have professional info step
+    // All roles now have professional info step
 
     return (
         <Box>
@@ -170,154 +170,154 @@ const ProfessionalInfoStep: React.FC<ProfessionalInfoStepProps> = ({
                     </>
                 )}
 
-        {selectedRole === 'hospital_admin' && (
-          <>
-            <Grid item xs={12} sm={6}>
-              <Controller
-                name="department"
-                control={control}
-                render={({ field }) => (
-                  <TextField
-                    {...field}
-                    fullWidth
-                    label="Department"
-                    required
-                    error={!!errors.department}
-                    helperText={errors.department?.message}
-                  />
+                {selectedRole === 'hospital_admin' && (
+                    <>
+                        <Grid item xs={12} sm={6}>
+                            <Controller
+                                name="department"
+                                control={control}
+                                render={({ field }) => (
+                                    <TextField
+                                        {...field}
+                                        fullWidth
+                                        label="Department"
+                                        required
+                                        error={!!errors.department}
+                                        helperText={errors.department?.message}
+                                    />
+                                )}
+                            />
+                        </Grid>
+                        <Grid item xs={12} sm={6}>
+                            <Controller
+                                name="position"
+                                control={control}
+                                render={({ field }) => (
+                                    <TextField
+                                        {...field}
+                                        fullWidth
+                                        label="Position"
+                                        required
+                                        error={!!errors.position}
+                                        helperText={errors.position?.message}
+                                    />
+                                )}
+                            />
+                        </Grid>
+                    </>
                 )}
-              />
-            </Grid>
-            <Grid item xs={12} sm={6}>
-              <Controller
-                name="position"
-                control={control}
-                render={({ field }) => (
-                  <TextField
-                    {...field}
-                    fullWidth
-                    label="Position"
-                    required
-                    error={!!errors.position}
-                    helperText={errors.position?.message}
-                  />
-                )}
-              />
-            </Grid>
-          </>
-        )}
 
-        {selectedRole === 'patient' && (
-          <>
-            <Grid item xs={12} sm={6}>
-              <Controller
-                name="emergencyContact"
-                control={control}
-                render={({ field }) => (
-                  <TextField
-                    {...field}
-                    fullWidth
-                    label="Emergency Contact Name"
-                    required
-                    error={!!errors.emergencyContact}
-                    helperText={errors.emergencyContact?.message}
-                  />
+                {selectedRole === 'patient' && (
+                    <>
+                        <Grid item xs={12} sm={6}>
+                            <Controller
+                                name="emergencyContact"
+                                control={control}
+                                render={({ field }) => (
+                                    <TextField
+                                        {...field}
+                                        fullWidth
+                                        label="Emergency Contact Name"
+                                        required
+                                        error={!!errors.emergencyContact}
+                                        helperText={errors.emergencyContact?.message}
+                                    />
+                                )}
+                            />
+                        </Grid>
+                        <Grid item xs={12} sm={6}>
+                            <Controller
+                                name="emergencyPhone"
+                                control={control}
+                                render={({ field }) => (
+                                    <TextField
+                                        {...field}
+                                        fullWidth
+                                        label="Emergency Contact Phone"
+                                        required
+                                        error={!!errors.emergencyPhone}
+                                        helperText={errors.emergencyPhone?.message}
+                                    />
+                                )}
+                            />
+                        </Grid>
+                        <Grid item xs={12}>
+                            <Controller
+                                name="medicalHistory"
+                                control={control}
+                                render={({ field }) => (
+                                    <TextField
+                                        {...field}
+                                        fullWidth
+                                        label="Medical History (Optional)"
+                                        multiline
+                                        rows={3}
+                                        error={!!errors.medicalHistory}
+                                        helperText={errors.medicalHistory?.message || "Any relevant medical conditions or allergies"}
+                                    />
+                                )}
+                            />
+                        </Grid>
+                    </>
                 )}
-              />
-            </Grid>
-            <Grid item xs={12} sm={6}>
-              <Controller
-                name="emergencyPhone"
-                control={control}
-                render={({ field }) => (
-                  <TextField
-                    {...field}
-                    fullWidth
-                    label="Emergency Contact Phone"
-                    required
-                    error={!!errors.emergencyPhone}
-                    helperText={errors.emergencyPhone?.message}
-                  />
-                )}
-              />
-            </Grid>
-            <Grid item xs={12}>
-              <Controller
-                name="medicalHistory"
-                control={control}
-                render={({ field }) => (
-                  <TextField
-                    {...field}
-                    fullWidth
-                    label="Medical History (Optional)"
-                    multiline
-                    rows={3}
-                    error={!!errors.medicalHistory}
-                    helperText={errors.medicalHistory?.message || "Any relevant medical conditions or allergies"}
-                  />
-                )}
-              />
-            </Grid>
-          </>
-        )}
 
-        {selectedRole === 'super_admin' && (
-          <>
-            <Grid item xs={12} sm={6}>
-              <Controller
-                name="adminLevel"
-                control={control}
-                render={({ field }) => (
-                  <FormControl fullWidth required error={!!errors.adminLevel}>
-                    <InputLabel>Admin Level</InputLabel>
-                    <Select {...field} label="Admin Level">
-                      <MenuItem value="system">System Administrator</MenuItem>
-                      <MenuItem value="platform">Platform Administrator</MenuItem>
-                      <MenuItem value="support">Support Administrator</MenuItem>
-                    </Select>
-                    {errors.adminLevel && (
-                      <FormHelperText>{errors.adminLevel.message}</FormHelperText>
-                    )}
-                  </FormControl>
+                {selectedRole === 'super_admin' && (
+                    <>
+                        <Grid item xs={12} sm={6}>
+                            <Controller
+                                name="adminLevel"
+                                control={control}
+                                render={({ field }) => (
+                                    <FormControl fullWidth required error={!!errors.adminLevel}>
+                                        <InputLabel>Admin Level</InputLabel>
+                                        <Select {...field} label="Admin Level">
+                                            <MenuItem value="system">System Administrator</MenuItem>
+                                            <MenuItem value="platform">Platform Administrator</MenuItem>
+                                            <MenuItem value="support">Support Administrator</MenuItem>
+                                        </Select>
+                                        {errors.adminLevel && (
+                                            <FormHelperText>{errors.adminLevel.message}</FormHelperText>
+                                        )}
+                                    </FormControl>
+                                )}
+                            />
+                        </Grid>
+                        <Grid item xs={12} sm={6}>
+                            <Controller
+                                name="organization"
+                                control={control}
+                                render={({ field }) => (
+                                    <TextField
+                                        {...field}
+                                        fullWidth
+                                        label="Organization"
+                                        required
+                                        error={!!errors.organization}
+                                        helperText={errors.organization?.message}
+                                    />
+                                )}
+                            />
+                        </Grid>
+                        <Grid item xs={12}>
+                            <Controller
+                                name="responsibilities"
+                                control={control}
+                                render={({ field }) => (
+                                    <TextField
+                                        {...field}
+                                        fullWidth
+                                        label="Key Responsibilities"
+                                        multiline
+                                        rows={3}
+                                        required
+                                        error={!!errors.responsibilities}
+                                        helperText={errors.responsibilities?.message || "Describe your main responsibilities in the system"}
+                                    />
+                                )}
+                            />
+                        </Grid>
+                    </>
                 )}
-              />
-            </Grid>
-            <Grid item xs={12} sm={6}>
-              <Controller
-                name="organization"
-                control={control}
-                render={({ field }) => (
-                  <TextField
-                    {...field}
-                    fullWidth
-                    label="Organization"
-                    required
-                    error={!!errors.organization}
-                    helperText={errors.organization?.message}
-                  />
-                )}
-              />
-            </Grid>
-            <Grid item xs={12}>
-              <Controller
-                name="responsibilities"
-                control={control}
-                render={({ field }) => (
-                  <TextField
-                    {...field}
-                    fullWidth
-                    label="Key Responsibilities"
-                    multiline
-                    rows={3}
-                    required
-                    error={!!errors.responsibilities}
-                    helperText={errors.responsibilities?.message || "Describe your main responsibilities in the system"}
-                  />
-                )}
-              />
-            </Grid>
-          </>
-        )}
             </Grid>
         </Box>
     );
