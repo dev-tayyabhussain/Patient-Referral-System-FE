@@ -85,7 +85,12 @@ const PersonalInfoStep: React.FC<PersonalInfoStepProps> = ({
                                 label="Phone Number"
                                 required
                                 error={!!errors.phone}
-                                helperText={errors.phone?.message}
+                                helperText={errors.phone?.message || 'Format: +1234567890'}
+                                onChange={(e) => {
+                                    const raw = e.target.value.replace(/[^+\d]/g, '');
+                                    field.onChange(raw);
+                                }}
+                                placeholder="+1234567890"
                             />
                         )}
                     />

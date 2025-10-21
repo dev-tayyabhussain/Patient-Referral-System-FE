@@ -116,6 +116,12 @@ const DoctorSidebar: React.FC<DoctorSidebarProps> = ({ open, onClose, variant = 
             icon: <SettingsIcon />,
             description: 'Profile settings',
         },
+        {
+            title: 'Profile',
+            path: '/dashboard/profile',
+            icon: <SettingsIcon />,
+            description: 'Edit your profile',
+        },
     ];
 
     const handleNavigation = (path: string) => {

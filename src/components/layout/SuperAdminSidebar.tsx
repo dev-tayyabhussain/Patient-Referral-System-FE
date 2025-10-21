@@ -117,6 +117,12 @@ const SuperAdminSidebar: React.FC<SuperAdminSidebarProps> = ({ open, onClose, va
             icon: <SettingsIcon />,
             description: 'System settings',
         },
+        {
+            title: 'Profile',
+            path: '/dashboard/profile',
+            icon: <AdminIcon />,
+            description: 'Edit your profile',
+        },
     ];
 
     const handleNavigation = (path: string) => {

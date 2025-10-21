@@ -110,6 +110,12 @@ const HospitalAdminSidebar: React.FC<HospitalAdminSidebarProps> = ({ open, onClo
             icon: <SettingsIcon />,
             description: 'Hospital settings',
         },
+        {
+            title: 'Profile',
+            path: '/dashboard/profile',
+            icon: <AdminIcon />,
+            description: 'Edit your profile',
+        },
     ];
 
     const handleNavigation = (path: string) => {
